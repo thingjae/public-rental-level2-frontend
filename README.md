@@ -3,7 +3,8 @@
 한빛구(가상) 거점 4곳의 공구, 캠핑, 생활, 행사 물품을 **한곳에서 찾고, 예약하고, 반납하는** 웹앱의 화면입니다.
 기획 내용은 [기획서.md](기획서.md)에 있습니다. 모든 기관, 인물, 연락처는 **가상**이며 실제 개인정보를 다루지 않습니다.
 
-- 배포 주소: https://public-rental-level2-frontend.vercel.app (배포 후 확정)
+- 배포 주소: https://public-rental-level2-frontend.vercel.app
+- 백엔드 주소: https://public-rental-level2-backend.onrender.com (DB 연결 확인: [/health](https://public-rental-level2-backend.onrender.com/health))
 - 백엔드 저장소: https://github.com/thingjae/public-rental-level2-backend
 
 > ⏳ 백엔드가 Render 무료 서버라, 한동안 아무도 쓰지 않았다면 첫 화면에 "서버를 깨우는 중" 안내가 뜨고 1분 가까이 걸릴 수 있어요. 고장이 아니에요.
