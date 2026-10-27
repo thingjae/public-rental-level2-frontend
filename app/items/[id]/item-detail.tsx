@@ -97,7 +97,7 @@ export function ItemDetailView() {
       )}
       {item.status !== 'AVAILABLE' && (
         <div className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
-          이 물품은 지금 <b>{item.nowStateLabel}</b> 상태라 예약할 수 없어요. (예약을 눌러도 서버가 규칙 R6으로 거절해요)
+          이 물품은 지금 <b>{item.nowStateLabel}</b> 상태라 예약할 수 없어요. 점검이 끝나면 다시 예약할 수 있어요.
         </div>
       )}
 
@@ -228,12 +228,12 @@ function BookingForm({ item, onBooked }: { item: ItemDetail; onBooked: () => voi
           <Field label="이름">
             <input className={inputClass} value={renterName} onChange={(e) => setName(e.target.value)} placeholder="홍길동" />
           </Field>
-          <Field label="연락처" hint="예: 010-1234-5678">
+          <Field label="연락처" hint="- 없이 숫자만 입력해도 돼요">
             <input
               className={inputClass}
               value={renterPhone}
               onChange={(e) => setPhone(e.target.value)}
-              placeholder="010-1234-5678"
+              placeholder="01012345678"
               inputMode="tel"
             />
           </Field>
@@ -332,8 +332,11 @@ function ReportForm({ item, onReported }: { item: ItemDetail; onReported: () => 
       </div>
       {open && (
         <form onSubmit={submit} className="mt-4 space-y-3" noValidate>
-          <Field label="이름">
-            <input className={inputClass} value={reporterName} onChange={(e) => setName(e.target.value)} />
+          <p className="rounded-lg bg-slate-50 px-3 py-2 text-sm text-slate-700">
+            신고할 물품: <b>{item.name}</b> ({item.location.name})
+          </p>
+          <Field label="신고하는 분 이름">
+            <input className={inputClass} value={reporterName} onChange={(e) => setName(e.target.value)} placeholder="홍길동" />
           </Field>
           <Field label="어디가 고장 났나요?">
             <textarea className={inputClass} rows={3} value={content} onChange={(e) => setContent(e.target.value)} />

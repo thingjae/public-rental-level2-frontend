@@ -30,9 +30,6 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
           </div>
         </header>
         <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-8">{children}</main>
-        <footer className="border-t border-slate-200 bg-white py-4 text-center text-xs text-slate-400">
-          과제용 가상 서비스입니다. 모든 기관, 인물, 연락처는 가상이며 실제 개인정보를 다루지 않습니다.
-        </footer>
       </body>
     </html>
   );

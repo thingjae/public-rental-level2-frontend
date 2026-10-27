@@ -30,7 +30,7 @@ export function PersonForm({ busy, onSubmit, submitLabel = '내 예약 찾기' }
           className={inputClass}
           value={renterPhone}
           onChange={(e) => setPhone(e.target.value)}
-          placeholder="010-1234-5678"
+          placeholder="01012345678 (- 없이 입력 가능)"
           inputMode="tel"
         />
       </Field>
