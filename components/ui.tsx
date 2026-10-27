@@ -26,7 +26,16 @@ export function Card({ children, className = '' }: { children: ReactNode; classN
   return <div className={`rounded-2xl border border-slate-200 bg-white p-5 shadow-sm ${className}`}>{children}</div>;
 }
 
-/** 서버가 거절한 이유를 그대로 보여 준다. 규칙 번호(R1~R8)도 함께 표시 */
+// 규칙 번호마다 주민이 이해하기 쉬운 제목. 번호는 오른쪽에 작게만 보여 준다.
+function titleOf(code: string | undefined) {
+  if (code === 'R5') return '취소할 수 없어요';
+  if (code === 'R8') return '본인 확인이 안 돼요';
+  if (code && /^R\d$/.test(code)) return '예약할 수 없어요';
+  if (code === 'VALIDATION') return '입력한 값을 확인해 주세요';
+  return '요청을 처리하지 못했어요';
+}
+
+/** 서버가 거절한 이유를 그대로 보여 준다 */
 export function ErrorBox({ error }: { error: unknown }) {
   if (!error) return null;
   const e = error instanceof ApiError ? error : null;
@@ -34,8 +43,9 @@ export function ErrorBox({ error }: { error: unknown }) {
   const isRule = e && /^R\d$/.test(e.code);
   return (
     <div role="alert" className="rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-800">
-      <p className="font-semibold">
-        {isRule ? `규칙 ${e.code}에 걸려 서버가 거절했어요` : e?.code === 'VALIDATION' ? '입력한 값을 확인해 주세요' : '요청을 처리하지 못했어요'}
+      <p className="flex items-start justify-between gap-2 font-semibold">
+        <span>{titleOf(e?.code)}</span>
+        {isRule && <span className="shrink-0 text-xs font-normal text-slate-400">규칙 {e.code}</span>}
       </p>
       <p className="mt-1">{message}</p>
       {e && e.messages.length > 1 && (
